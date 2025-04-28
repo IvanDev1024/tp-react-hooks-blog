@@ -45,6 +45,8 @@ Pour chaque exercice :
    - Les difficultés rencontrées et comment vous les avez résolues
 5. Commitez vos changements avec un message descriptif
 
+```
+
 ### Exercice 1 : État et Effets 
 #### Objectif : Implémenter l'affichage et la recherche de posts
 
@@ -52,6 +54,8 @@ Pour chaque exercice :
 - [ ] 1.2 Implémenter le composant `PostList` pour afficher les posts
 - [ ] 1.3 Ajouter la fonctionnalité de recherche par titre ou contenu dans `PostSearch`
 - [ ] 1.4 Documenter votre solution ici
+
+
 
 _Votre réponse pour l'exercice 1 :_
 ```
@@ -76,7 +80,7 @@ Puis nous avons Implémenté le composant PostList pour afficher les posts en su
 -Ajouter le bouton "Charger plus" pour le mode non-infini
 <img width="529" alt="image" src="https://github.com/user-attachments/assets/c9a95f0a-7fb5-4f4b-9ca5-b0960a5ea80f" />
 
-
+```
 
 ### Exercice 2 : Hooks Personnalisés
 #### Objectif : Créer des hooks réutilisables
@@ -85,6 +89,8 @@ Puis nous avons Implémenté le composant PostList pour afficher les posts en su
 - [ ] 2.2 Créer le hook `useLocalStorage` pour persister les préférences utilisateur
 - [ ] 2.3 Utiliser ces hooks dans l'application
 - [ ] 2.4 Documenter votre solution ici
+
+
 
 _Votre réponse pour l'exercice 2 :_
 ```
@@ -122,7 +128,7 @@ Enfin nous avons avons utilisé ces deux hooks dans l'application
 - Ici useLocalStorage sert à conserver le choix de l'utilisateur (pagination ou défilement infini) même après un rechargement de la page ou une fermeture du navigateur.
 <img width="478" alt="image" src="https://github.com/user-attachments/assets/63ff4252-daff-4f86-ba90-cde5fc2b0afd" />
 
-
+```
 
 ### Exercice 3 : Optimisation et Context
 #### Objectif : Gérer le thème global et optimiser les rendus
@@ -131,6 +137,8 @@ Enfin nous avons avons utilisé ces deux hooks dans l'application
 - [ ] 3.2 Implémenter le composant `ThemeToggle`
 - [ ] 3.3 Utiliser `useCallback` et `useMemo` pour optimiser les performances
 - [ ] 3.4 Documenter votre solution ici
+
+
 
 _Votre réponse pour l'exercice 3 :_
 ```
@@ -161,8 +169,7 @@ Enfin Utilisé useCallback et useMemo pour optimiser les performances en procéd
 - Utiliser useMemo pour ne recréer l'objet que si nécessaire (ceci évite de créer une nouvelle value à chaque fois)
 <img width="416" alt="image" src="https://github.com/user-attachments/assets/adf0a0ec-1a53-4311-84b4-80419d11b639" />
 
-
-
+```
 
 ### Exercice 4 : Fonctionnalités avancées
 #### Objectif : Ajouter des fonctionnalités de chargement et détail
@@ -172,11 +179,49 @@ Enfin Utilisé useCallback et useMemo pour optimiser les performances en procéd
 - [ ] 4.3 Ajouter la fonctionnalité de filtrage par tags
 - [ ] 4.4 Documenter votre solution ici
 
+
+
 _Votre réponse pour l'exercice 4 :_
 ```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+Dans l'exercice 4, nous avons traiter des Fonctionnalités plus avancées qui sont explicitées dans les prochaines lignes.
+Dans un premier temps, nous avons Implémenté le chargement infini des posts avec `useIntersectionObserver`en procédant comme suit :
+- Créer un état pour suivre l'intersection
+<img width="364" alt="image" src="https://github.com/user-attachments/assets/32126216-2f2f-47e4-b1d1-e7cbcb86147f" />
+
+- Créer une référence pour l'élément à observer
+<img width="306" alt="image" src="https://github.com/user-attachments/assets/7d8f26ca-0d19-4958-ace2-8f0b61f12777" />
+
+- Configurer l'IntersectionObserver dans un useEffect
+<img width="352" alt="image" src="https://github.com/user-attachments/assets/af7accf5-aa1a-4ef5-bd01-ec76d36bdd92" />
+
+- Retourner la référence et l'état d'intersection
+<img width="326" alt="image" src="https://github.com/user-attachments/assets/79ec8964-3fdd-4aa2-b760-0e16393a5050" />
+
+
+Puis nous avons Créer le composant `PostDetails` pour afficher les détails d'un post en suivant les étapes suivantes : 
+- Afficher le contenu du post
+- <img width="325" alt="image" src="https://github.com/user-attachments/assets/23ea0044-c79a-435d-906e-92015f309a7f" />
+
+- Afficher les réactions et l'utilisateur
+<img width="396" alt="image" src="https://github.com/user-attachments/assets/de0d5d3c-de46-413b-af93-0e209cca903e" />
+
+- Afficher les tags
+<img width="356" alt="image" src="https://github.com/user-attachments/assets/8715ba3b-4471-4193-ae5c-911a6085663f" />
+
+
+Pour terminer nous avons Ajouté la fonctionnalité de filtrage par tags dans PostList
+- Définir l'État pour le tag sélectionné
+<img width="332" alt="image" src="https://github.com/user-attachments/assets/5cda6690-45df-40b3-84d6-c6c2acb0faff" />
+
+- Gérer Filtrage local des posts
+<img width="374" alt="image" src="https://github.com/user-attachments/assets/74d78a0e-5397-4e23-8426-bbdea76adda9" />
+
+- Gérer la Réinitialisation du filtre
+<img width="280" alt="image" src="https://github.com/user-attachments/assets/48066301-37e3-4fc8-8c9b-fb3f1cec99aa" />
+
+- Gérer l'activité du Tag sélectionné
+<img width="481" alt="image" src="https://github.com/user-attachments/assets/f2387e20-ac94-4c33-a301-7acc6f161610" />
+
 
 ## Structure détaillée du projet
 
