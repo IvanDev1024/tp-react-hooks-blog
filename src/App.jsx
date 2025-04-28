@@ -6,16 +6,25 @@ import PostSearch from './components/PostSearch';
 // TODO: Exercice 3 - Importer ThemeProvider et useTheme
 // TODO: Exercice 1 - Importer le hook usePosts
 // TODO: Exercice 2 - Importer le hook useLocalStorage
+import { useLocalStorage } from './hooks/useLocalStorage';
+// importation  du hook useDebounce(Exercice 2)
+import { useDebounce } from './hooks/useDebounce';
+
 
 function App() {
   // État local pour la recherche
   const [searchTerm, setSearchTerm] = useState('');
+  // Utilisation du hook useDebounce(Exercice 2) [L'utilisation de useDebounce ici permet après une pause à la suite de chaque frappe de l'utilisateur, la limitation et le contrôle des appels API et donc une expérience fluide et performante.]
+  const debouncedSearchTerm = useDebounce(searchTerm, 500); 
+
   // TODO: Exercice 4 - Ajouter l'état pour le tag sélectionné
   
   // TODO: Exercice 1 - Utiliser le hook usePosts pour récupérer les posts
   // Exemple: const { posts, loading, error } = usePosts();
   
-  // TODO: Exercice 2 - Utiliser useLocalStorage pour le mode de défilement
+  // TODO: Exercice 2 - Utiliser useLocalStorage pour le mode de défilement [ici useLocalStorage sert à conserver le choix de l'utilisateur (pagination ou défilement infini) même après un rechargement de la page ou une fermeture du navigateur.]
+  const [scrollMode, setScrollMode] = useLocalStorage('scrollMode', 'pagination');
+
   
   // TODO: Exercice 3 - Utiliser useCallback pour les gestionnaires d'événements
   
