@@ -54,9 +54,28 @@ Pour chaque exercice :
 
 _Votre réponse pour l'exercice 1 :_
 ```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+Dans ce premier exercice, nous avons commencé par compléter le hook usePosts pour récupérer les posts depuis l'API dummyjson.com en procédant de la façon suivante : 
+- Ajouter les états nécessaires pour la pagination (setPage et setHasMore).
+<img width="421" alt="image" src="https://github.com/user-attachments/assets/186329af-f0da-4697-a279-d051779d41e1" />
+
+- Implémenter la fonction pour charger les posts en utilisant fetchPosts.
+<img width="449" alt="image" src="https://github.com/user-attachments/assets/7b408b50-d491-4473-a337-a959d68abab7" />
+
+- Utiliser useEffect pour charger les posts quand les filtres changent.
+<img width="541" alt="image" src="https://github.com/user-attachments/assets/32ce0f02-febd-4018-9b47-f8689a605c58" />
+
+
+Puis nous avons Implémenté le composant PostList pour afficher les posts en suivant les prochaines étapes : 
+- Gérer le cas où il n'y a pas de posts
+<img width="393" alt="image" src="https://github.com/user-attachments/assets/00364088-c6d2-4469-b745-9b5350e29e6c" />
+
+-  Afficher la liste des posts
+<img width="382" alt="image" src="https://github.com/user-attachments/assets/dfca2591-e84c-4db0-95cf-04bb03cb8872" />
+
+-Ajouter le bouton "Charger plus" pour le mode non-infini
+<img width="529" alt="image" src="https://github.com/user-attachments/assets/c9a95f0a-7fb5-4f4b-9ca5-b0960a5ea80f" />
+
+
 
 ### Exercice 2 : Hooks Personnalisés
 #### Objectif : Créer des hooks réutilisables
