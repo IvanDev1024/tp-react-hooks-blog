@@ -134,9 +134,35 @@ Enfin nous avons avons utilisé ces deux hooks dans l'application
 
 _Votre réponse pour l'exercice 3 :_
 ```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+Dans l'exercice 3, il s'est agit de Gérer le thème global et optimiser les rendus pour cela nous avons :
+D'abord Créé le ThemeContext pour gérer le thème clair/sombre en :
+- Utilisant useLocalStorage pour persister le thème
+<img width="425" alt="image" src="https://github.com/user-attachments/assets/63211430-619e-4dc9-b35e-78ad7db598d4" />
+
+- Implémentant le hook useTheme
+<img width="410" alt="image" src="https://github.com/user-attachments/assets/310e112d-1cec-4dd2-a3a7-9755ede76f35" />
+
+
+Ensuite Implémenté le composant ThemeToggle passant par les étapes suivantes :
+- Ajouter cette fonction pour basculer entre les thèmes
+<img width="445" alt="image" src="https://github.com/user-attachments/assets/a4e81995-6670-41e0-b135-332c7324a7fb" />
+
+- Fournir les valeurs et fonctions nécessaires
+<img width="422" alt="image" src="https://github.com/user-attachments/assets/af459d30-c2e8-4c34-af95-9dd2241c7e38" />
+
+
+Enfin Utilisé useCallback et useMemo pour optimiser les performances en procédant comme suit :
+- Importer de useCallback et useMemo dans ThemeContext
+<img width="463" alt="image" src="https://github.com/user-attachments/assets/d64393c9-d15f-483a-b809-554662df0d69" />
+
+- Utiliser useCallback pour stabiliser la fonction entre les rendus (cela évite que toggleTheme soit redéfinie à chaque rendu)
+<img width="442" alt="image" src="https://github.com/user-attachments/assets/8976dae0-6f14-4d71-9918-2588ae0e94c4" />
+
+- Utiliser useMemo pour ne recréer l'objet que si nécessaire (ceci évite de créer une nouvelle value à chaque fois)
+<img width="416" alt="image" src="https://github.com/user-attachments/assets/adf0a0ec-1a53-4311-84b4-80419d11b639" />
+
+
+
 
 ### Exercice 4 : Fonctionnalités avancées
 #### Objectif : Ajouter des fonctionnalités de chargement et détail
