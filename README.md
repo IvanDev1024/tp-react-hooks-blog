@@ -87,9 +87,41 @@ Puis nous avons Implémenté le composant PostList pour afficher les posts en su
 
 _Votre réponse pour l'exercice 2 :_
 ```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
-```
+Dans l'exercice 2, nous avons Créé deux hooks réutilisables useDebounce et useLocalStorage que nous avons, ensuite utilisés dans notre application :
+Premièrement lors de la Création de useDebounce nous avons :
+- Créé un état pour stocker la valeur debouncée
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/bd5ad3c5-644d-49ce-ad17-4dd05b57755d" />
+
+- Utilisé useEffect pour mettre à jour la valeur après le délai
+<img width="427" alt="image" src="https://github.com/user-attachments/assets/fa05e463-323a-4278-b96c-2cc58bc884af" />
+
+- Retourné la valeur debouncée(sans oublier le nettoyage au cas où la valeur change avant la fin du délai)
+<img width="336" alt="image" src="https://github.com/user-attachments/assets/2bc9a413-4fb7-4a84-a4f3-47e7c6699b6e" />
+
+Deuxièmement pour la Création de useLocalStorage nous avons :
+- Initialiser l'état avec la valeur initiale
+<img width="469" alt="image" src="https://github.com/user-attachments/assets/fde55e27-ce65-4df7-9754-49dc791fc307" />
+
+- programmé la mise à jour de localStorage quand la valeur change
+<img width="448" alt="image" src="https://github.com/user-attachments/assets/2ce84eac-9b7f-44f3-a65b-cdeac3d307e5" />
+
+- Retourné la valeur et la fonction de mise à jour
+<img width="343" alt="image" src="https://github.com/user-attachments/assets/86d09768-1b05-465d-93a1-8684fbc9f44c" />
+
+Enfin nous avons avons utilisé ces deux hooks dans l'application
+- importation de useDebounce
+<img width="321" alt="image" src="https://github.com/user-attachments/assets/99ae9880-34d9-4e62-86b5-bbcb3db8364c" />
+
+- L'utilisation de useDebounce ici permet après une pause à la suite de chaque frappe de l'utilisateur, la limitation et le contrôle des appels API et donc une expérience fluide et performante.
+<img width="355" alt="image" src="https://github.com/user-attachments/assets/5a4e69f3-d954-4d4b-baed-9d0dcfa6c8da" />
+
+- importation de useLocalStorage
+<img width="361" alt="image" src="https://github.com/user-attachments/assets/607054ee-4628-40ff-a9d7-d2ba6eb4ff85" />
+
+- Ici useLocalStorage sert à conserver le choix de l'utilisateur (pagination ou défilement infini) même après un rechargement de la page ou une fermeture du navigateur.
+<img width="478" alt="image" src="https://github.com/user-attachments/assets/63ff4252-daff-4f86-ba90-cde5fc2b0afd" />
+
+
 
 ### Exercice 3 : Optimisation et Context
 #### Objectif : Gérer le thème global et optimiser les rendus
