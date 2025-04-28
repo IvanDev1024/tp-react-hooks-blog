@@ -1,5 +1,7 @@
-import React, { createContext, useContext } from 'react';
+// Importation de useCallback et useMemo (Exercice 3)
+import React, { createContext, useContext, useCallback, useMemo } from 'react';
 // TODO: Exercice 2 - Importer useLocalStorage
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 // Créer le contexte
 const ThemeContext = createContext();
@@ -11,12 +13,21 @@ const ThemeContext = createContext();
  */
 export function ThemeProvider({ children }) {
   // TODO: Exercice 3 - Utiliser useLocalStorage pour persister le thème
+  const [theme, setTheme] = useLocalStorage('theme', 'light');
+
   // TODO: Exercice 3 - Ajouter la fonction pour basculer entre les thèmes
+    // useCallback pour stabiliser la fonction entre les rendus(Exercice 3)  useCallback évite que toggleTheme soit redéfinie à chaque rendu.
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  });
   
   // Valeur fournie par le contexte
-  const value = {
+    // useMemo pour ne recréer l'objet que si nécessaire (Exercice 3) useMemo évite de créer une nouvelle value à chaque fois
+  const value = useMemo(() => ({
     // TODO: Exercice 3 - Fournir les valeurs et fonctions nécessaires
-  };
+    theme,
+    toggleTheme,
+  }), [theme, toggleTheme]);
 
   return (
     <ThemeContext.Provider value={value}>
@@ -32,7 +43,11 @@ export function ThemeProvider({ children }) {
 export function useTheme() {
   // TODO: Exercice 3 - Implémenter le hook useTheme
   
-  return {}; // À modifier
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
 }
 
 export default ThemeContext;
