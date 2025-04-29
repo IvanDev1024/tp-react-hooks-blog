@@ -34,7 +34,7 @@ function usePosts({ searchTerm = '', tag = '', limit = 10, infinite = true } = {
     let url;
     if (debouncedSearchTerm) {
       url = new URL('https://dummyjson.com/posts/search');
-      url.searchParams.set('q', debouncedSearchTool);
+      url.searchParams.set('q', debouncedSearchTerm);
     } else {
       url = new URL('https://dummyjson.com/posts');
     }
