@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
   // TODO: Exercice 2 - Implémenter le hook useDebounce
   // 1. Créer un état pour stocker la valeur debouncée
    function useDebounce(value, delay = 500) {
-    const [debouncedValue, setDebouncedValue] = useState<T>(value);
+    const [debouncedValue, setDebouncedValue] = useState(value);
 
   // 2. Utiliser useEffect pour mettre à jour la valeur après le délai
   useEffect(() => {

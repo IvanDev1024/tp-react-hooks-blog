@@ -6,9 +6,9 @@ import PostSearch from './components/PostSearch';
 // TODO: Exercice 3 - Importer ThemeProvider et useTheme
 // TODO: Exercice 1 - Importer le hook usePosts
 // TODO: Exercice 2 - Importer le hook useLocalStorage
-import { useLocalStorage } from './hooks/useLocalStorage';
+import  useLocalStorage from './hooks/useLocalStorage';
 // importation  du hook useDebounce(Exercice 2)
-import { useDebounce } from './hooks/useDebounce';
+import  useDebounce  from './hooks/useDebounce';
 
 
 function App() {

@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState, useMemo } from 'react';
 // TODO: Exercice 3 - Importer useTheme
-import  useTheme  from '../hook/useTheme'; 
+import { useTheme } from '../context/ThemeContext';
 
 // TODO: Exercice 4 - Importer useIntersectionObserver
 import useIntersectionObserver from '../hooks/useIntersectionObserver';
@@ -29,7 +29,7 @@ function PostList({
   // TODO: Exercice 3 - Utiliser le hook useTheme
   const { theme } = useTheme();
 
-  // 👉 État pour le tag sélectionné
+  //  Définir l'État pour le tag sélectionné (Exercice 4)
   const [selectedTag, setSelectedTag] = useState(null);
 
   // TODO: Exercice 3 - Utiliser useCallback pour les gestionnaires d'événements
@@ -47,10 +47,10 @@ function PostList({
     }
   }, [onTagClick]);
 
-  // 👉 Réinitialisation du filtre
+  //  Réinitialisation du filtre (Exercice 4)
   const clearFilter = () => setSelectedTag(null);
 
-  // 👉 Filtrage local des posts
+  //  Filtrage local des posts (Exercice 4)
   const filteredPosts = useMemo(() => {
     return selectedTag
       ? posts.filter((post) => post.tags?.includes(selectedTag))
@@ -70,7 +70,7 @@ function PostList({
         <div className="post-list__empty">Aucun post à afficher.</div>
       )}
 
-      {/* Tag sélectionné actif */}
+      {/* Tag sélectionné actif (Exercice 4)*/}
       {selectedTag && (
         <div className="mb-3">
           <span className="badge bg-info me-2">Filtré par : #{selectedTag}</span>
