@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useCallback, useRef, useState, useMemo } from 'react';
 // TODO: Exercice 3 - Importer useTheme
-import { useTheme } from '../hooks/useTheme'; // ou selon ton architecture
-import { useCallback } from 'react';
-
+import  useTheme  from '../hook/useTheme'; 
 
 // TODO: Exercice 4 - Importer useIntersectionObserver
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 import LoadingSpinner from './LoadingSpinner';
-import { useIntersectionObserver } from 'react'; // ajuster le chemin si besoin
-import { useRef, useEffect } from 'react';
-
 
 /**
  * Composant d'affichage de la liste des posts
@@ -31,78 +27,93 @@ function PostList({
   infiniteScroll = true
 }) {
   // TODO: Exercice 3 - Utiliser le hook useTheme
-  const theme = useTheme();
+  const { theme } = useTheme();
 
-  
-  // TODO: Exercice 4 - Utiliser useIntersectionObserver pour le défilement infini
-  const sentinelRef = useRef();
+  // 👉 État pour le tag sélectionné
+  const [selectedTag, setSelectedTag] = useState(null);
 
-
-  useIntersectionObserver({
-    target: sentinelRef,
-    onIntersect: ([entry]) => {
-      if (entry.isIntersecting && hasMore && !loading && infiniteScroll) {
-        onLoadMore();
-      }
-    },
-    enabled: infiniteScroll
-  }); 
-  
   // TODO: Exercice 3 - Utiliser useCallback pour les gestionnaires d'événements
   const handlePostClick = useCallback((post) => {
     if (onPostClick) {
       onPostClick(post);
     }
   }, [onPostClick]);
-  
+
   const handleTagClick = useCallback((e, tag) => {
     e.stopPropagation();
+    setSelectedTag(tag);
     if (onTagClick) {
       onTagClick(tag);
     }
   }, [onTagClick]);
-  
-  // TODO: Exercice 1 - Gérer le cas où il n'y a pas de posts
-  {posts.length === 0 && !loading && (
-    <div className="post-list__empty">Aucun post à afficher.</div>
-  )}
-  
+
+  // 👉 Réinitialisation du filtre
+  const clearFilter = () => setSelectedTag(null);
+
+  // 👉 Filtrage local des posts
+  const filteredPosts = useMemo(() => {
+    return selectedTag
+      ? posts.filter((post) => post.tags?.includes(selectedTag))
+      : posts;
+  }, [posts, selectedTag]);
+
+  // 👀 Chargement infini via IntersectionObserver
+  const [sentinelRef] = useIntersectionObserver({
+    enabled: infiniteScroll && hasMore && !loading,
+    rootMargin: '200px',
+  });
+
   return (
-    <div className="post-list">
+    <div className={`post-list ${theme}`}>
+      {/* TODO: Exercice 1 - Gérer le cas où il n'y a pas de posts */}
+      {filteredPosts.length === 0 && !loading && (
+        <div className="post-list__empty">Aucun post à afficher.</div>
+      )}
+
+      {/* Tag sélectionné actif */}
+      {selectedTag && (
+        <div className="mb-3">
+          <span className="badge bg-info me-2">Filtré par : #{selectedTag}</span>
+          <button className="btn btn-sm btn-outline-secondary" onClick={clearFilter}>
+            Réinitialiser le filtre
+          </button>
+        </div>
+      )}
+
       {/* TODO: Exercice 1 - Afficher la liste des posts */}
-      {posts.map((post) => (
-  <div
-    key={post.id}
-    className="post"
-    onClick={() => handlePostClick(post)}
-  >
-    <h3>{post.title}</h3>
-    <div className="post-tags">
-      {post.tags.map((tag) => (
-        <span
-          key={tag}
-          className="post-tag"
-          onClick={(e) => handleTagClick(e, tag)}
+      {filteredPosts.map((post) => (
+        <div
+          key={post.id}
+          className="post"
+          onClick={() => handlePostClick(post)}
         >
-          #{tag}
-        </span>
+          <h3>{post.title}</h3>
+          <div className="post-tags">
+            {post.tags.map((tag) => (
+              <span
+                key={tag}
+                className="post-tag"
+                onClick={(e) => handleTagClick(e, tag)}
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
       ))}
-    </div>
-  </div>
-))}
-      
+
       {/* Afficher le spinner de chargement */}
       {loading && <LoadingSpinner />}
-      
+
       {/* TODO: Exercice 4 - Ajouter la référence pour le défilement infini */}
-      <div ref={sentinelRef} />
+      <div ref={sentinelRef}></div>
 
       {/* TODO: Exercice 1 - Ajouter le bouton "Charger plus" pour le mode non-infini */}
       {!infiniteScroll && hasMore && (
-  <button onClick={onLoadMore} disabled={loading}>
-    Charger plus
-  </button>
-)}
+        <button onClick={onLoadMore} disabled={loading}>
+          Charger plus
+        </button>
+      )}
     </div>
   );
 }
