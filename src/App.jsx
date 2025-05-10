@@ -6,6 +6,8 @@ import PostSearch from './components/PostSearch';
 import ThemeToggle from './components/ThemeToggle';
 // TODO: Exercice 3 - Importer ThemeProvider et useTheme
 import { ThemeProvider } from './context/ThemeContext';
+import { useTheme } from './context/ThemeContext';
+
 // TODO: Exercice 1 - Importer le hook usePosts
 import usePosts from './hooks/usePosts';
 // TODO: Exercice 2 - Importer le hook useLocalStorage
@@ -13,10 +15,16 @@ import useLocalStorage from './hooks/useLocalStorage';
 // importation  du hook useDebounce(Exercice 2)
 import useDebounce from './hooks/useDebounce';
 import PostDetails from './components/PostDetails'; // Exercice 4
+import Compteur from './components/Compteur';
 
 function App() {
+
+  const { theme } = useTheme();
+
   // État local pour la recherche
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [score, setScore] = useState(0);
 
   // Utilisation du hook useDebounce(Exercice 2) 
   const debouncedSearchTerm = useDebounce(searchTerm, 500); 
@@ -31,7 +39,9 @@ function App() {
     error,
     hasMore,
     loadMore,
-  } = usePosts(debouncedSearchTerm);
+  // } = usePosts(debouncedSearchTerm);
+} = usePosts({ searchTerm: debouncedSearchTerm, tag: selectedTag });
+
 
   // TODO: Exercice 2 - Utiliser useLocalStorage pour le mode de défilement 
   const [scrollMode, setScrollMode] = useLocalStorage('scrollMode', 'pagination');
@@ -63,7 +73,9 @@ function App() {
     : posts;
 
   return (
-    <ThemeProvider>
+  
+    <div className={`app ${theme}`}>
+
       <div className="container py-4">
         <header className="pb-3 mb-4 border-bottom">
           <div className="d-flex justify-content-between align-items-center">
@@ -98,7 +110,12 @@ function App() {
             onTagClick={handleTagClick}
             infiniteScroll={scrollMode === 'infinite'}
           />
+
+
+
         </main>
+        
+<Compteur/>
 
         <footer className="pt-3 mt-4 text-center border-top">
           <p>
@@ -106,7 +123,10 @@ function App() {
           </p>
         </footer>
       </div>
-    </ThemeProvider>
+      </div>
+    
+    
+
   );
 }
 
