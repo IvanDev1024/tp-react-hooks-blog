@@ -223,6 +223,28 @@ Pour terminer nous avons Ajouté la fonctionnalité de filtrage par tags dans Po
 <img width="481" alt="image" src="https://github.com/user-attachments/assets/f2387e20-ac94-4c33-a301-7acc6f161610" />
 
 
+### Des captures d'écran montrant le fonctionnement
+
+- Blog en mode claire
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/439b100e-7ee4-4363-8657-d8fe732c10eb" />
+
+- Blog en mode sombre
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/4a6b66ea-5534-4854-a80f-aaef59ef9812" />
+
+- Exemple de recherche avec mot clé
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/fe1dd270-493b-4ce5-81ad-088c76e9744a" />
+
+- Utilisation du bouton "charger plus"
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/424e35ec-2bbb-4c8d-8bff-170b389fdf83" />
+
+
+### A propos des difficultés rencontrées
+
+La principale difficulté était liée à la maîtrise puisqu'il fallait d'abord comprendre l'utilité des hooks, saisir leur mode de fonctionnement avant de pouvoir les utiliser dans le cadre de ce TP. Pour venir à bout de cette difficulté, nous avons dû revoir le cours sur les hooks et compléter nos connaissances dans ce domaine grâce à Youtube et ChatGPT.
+
+
+
+
 ## Structure détaillée du projet
 
 ```
